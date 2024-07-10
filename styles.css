@@ -30,13 +30,15 @@ html {
     height: 70px;
     
     background-color: aliceblue;
+    text-align: right;
+    font-size: 60px;
+    font-style: bold;
     /* border: solid 4px black;  */
 }
 
 #buttons {
     display: flex;
     flex-direction: row;
-    
 }
 
 button {
@@ -49,5 +51,11 @@ button {
 }
 
 .operators {
+    background-color: darksalmon;
+}
+.clear {
+    background-color: darksalmon;
+}
+.equals {
     background-color: darksalmon;
 }

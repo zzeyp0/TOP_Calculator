@@ -34,10 +34,61 @@ function operate(operator, firstNum, secondNum) {
     }
 }
 
+const display = document.querySelector("#display");
 function populateDisplay(input) {
     displayVal = input;
-    const display = document.querySelector("#display");
     display.textContent = "";
     display.textContent = input;
 }
 
+let heldVals = ""
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (operator == null && button.classList.contains("numbers")) {
+            heldVals += button.id;
+        }
+        if (button.classList.contains("operators")) {
+            operator = button.id;
+            firstNum = parseInt(heldVals);
+            heldVals = "";
+        }
+        if (operator != null && button.classList.contains("numbers")) {
+            heldVals += button.id;
+        }
+
+        if (button.classList.contains("equals")) {
+            secondNum = parseInt(heldVals);
+            if (operator == "+") {
+                populateDisplay(add(firstNum, secondNum));
+            }
+            if (operator == "-") {
+                populateDisplay(subtract(firstNum, secondNum));
+            }
+            if (operator == "*") {
+                populateDisplay(multiply(firstNum, secondNum));
+            }
+            if (operator == "/") {
+                populateDisplay(divide(firstNum, secondNum));
+            }
+
+            firstNum = null;
+            secondNum = null;
+            operator = null;
+        }
+
+        
+        // if (button.classList.contains("numbers")) { //HOW CONCATONATE DIGITS >1?
+        //     populateDisplay(button.id);
+        // }
+
+        if (button.classList.contains("clear")) {
+            display.textContent = "";
+            firstNum = null;
+            secondNum = null;
+            operator = null;
+        }
+
+        //alert(button.id);
+    });
+});
